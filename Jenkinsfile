@@ -4,11 +4,14 @@ pipeline {
             label 'rajmaven'
         }
     }
+environment {
+    PATH = "/usr/share/maven/bin:$PATH"
+}
 
     stages {
-        stage('clone-code') {
+        stage('build') {
             steps {
-                git branch: 'main', credentialsId: 'maven-server', url: 'https://github.com/araj0007/tweet-trend-new.git'
+                sh 'mvn deploy '
             }
         }
     }
